@@ -1,3 +1,5 @@
+const HOST_URL = "http://localhost:80/Pineapple";
+
 new Vue({
     el: '.newsletter',
     data() {
@@ -7,7 +9,8 @@ new Vue({
         emailMessage: '',
         termsMessage: '',
         haveErrors: false,
-        submitted: false, 
+        submitted: false,
+        isSubmitButtonDisabled: false, 
       }
     },
 
@@ -43,9 +46,43 @@ new Vue({
       },
     },
     methods: {
+      async postData(url = '', data = {}) {
+        const response = await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(data)
+        });
+        return response.json();
+      },
       submit() {
         if (this.isInvalidForm) return;
+
+        let data = {
+          email: this.email,
+          terms: this.terms
+        }
+        this.isSubmitButtonDisabled = true;
+        const setSubmitSuccess = this.setSubmitSuccess;
+
+        this.postData(HOST_URL + '/submit.php', data)
+          .then(res => {
+            setSubmitSuccess();
+            this.isSubmitButtonDisabled = false;
+          })
+          .catch(() => {
+            console.log('Server error! Try again later.');
+            this.isSubmitButtonDisabled = false;
+          })
+      },
+      setSubmitSuccess() {
         this.submitted = true;
-      }
+      },
     }
   })

@@ -339,3 +339,15 @@ a {
   font-size: 12px;
   line-height: 18px;
   color: #6A707B; }
+
+.hidden {
+  display: none !important; }
+
+noscript {
+  height: 100%; }
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto; }
+  table td {
+    border: 1px solid black; }

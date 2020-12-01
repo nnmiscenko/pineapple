@@ -15,11 +15,9 @@ header('Content-Type: application/json');
 
   // Data
   $json = file_get_contents('php://input');
-  $data = json_decode($json);
+  $params = json_decode($json);
 
-  $id = 1;
-  $email = $data->email;
-  $email_platform = $data->email;
+  $email_platform = $params->data->email;
   $date = date("Y/m/d h:i:s");
 
   if ($email = '') {
@@ -27,14 +25,15 @@ header('Content-Type: application/json');
     echo json_encode($res);
   }
 
-  $sql = "INSERT INTO `applications` (`id`, `email`, `email_platform`, `create_date`)
-    VALUES ('$id', '$email', '$email_platform', '$date')";
+  $sql = "INSERT INTO `applications` (`email`, `email_platform`, `create_date`)
+    VALUES ('$email_platform', '$email_platform', '$date')";
 
   if ($conn->query($sql) === TRUE) {
     $res = [ 'status' => 'ok' ];
     echo json_encode($res);
   } else {
-  // echo "Error: " . $sql . "<br>" . $conn->error;
+    $res = [ 'status' => 'error' ];
+    echo json_encode($res);
   }
 
   $conn->close();

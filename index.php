@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
   <link href="assets/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
   <title>Pineapple.</title>
 </head>
@@ -13,7 +14,7 @@
     <div class="content-block">
       <div id="navbar">
         <div class="logo">
-          <a href="#">
+          <a href="">
             <div class="logo__main">
               <svg width="25" height="40" viewBox="0 0 25 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75658 14.5161L0 7.41936L6.57895 8.54839L5.75658 0.967742L10.5263 6.45161L12.5 0L14.4737 6.45161L19.2434 0.967742L18.4211 8.54839L25 7.41936L19.2434 14.5161H5.75658ZM8.07206 10.1146L7.51478 4.97752L11.0926 9.09101L12.5 4.49046L13.9074 9.09101L17.4852 4.97752L16.9279 10.1146L21.8124 9.27632L18.6088 13.2258H6.39123L3.18759 9.27632L8.07206 10.1146Z" fill="#4066A5"/>
@@ -44,7 +45,7 @@
           </ul>
         </div>
       </div>
-      <div class="newsletter" id="js-enabled" style="display: none;">
+      <div class="newsletter hidden" id="js-enabled">
         <div class="success-message" v-if="submitted">
           <svg id="win-icon" width="44" height="70" viewBox="0 0 44 70" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M13 51C13 50.4477 13.4477 50 14 50H30C30.5523 50 31 50.4477 31 51V61C31 61.5523 30.5523 62 30 62H14C13.4477 62 13 61.5523 13 61V51ZM15 52H29V60H15V52Z" fill="#4066A5"/>
@@ -87,7 +88,9 @@
               <span>I agree to <a href="#" class="terms-link">terms of service</a></span>
             </div>
           </form>
-          <div class="vertical-line"></div>
+        </div>
+
+      <div class="vertical-line"></div>
           <div class="social-icons">
             <a href="#" class="icon facebook-icon">
               <i class="fab fa-facebook-f"></i>
@@ -102,8 +105,8 @@
               <i class="fab fa-youtube"></i>
             </a>
           </div>
-        </div>
-      </div>
+          </div>
+
       <noscript> 
         <div class="newsletter">
           <?php
@@ -161,8 +164,8 @@
                 die("Connection failed: " . $conn->connect_error);
               }
   
-              $sql = "INSERT INTO `applications` (`id`, `email`, `email_platform`, `create_date`)
-              VALUES ('$id', '$email', '$email', '$date')";
+              $sql = "INSERT INTO `applications` (`email`, `email_platform`, `create_date`)
+              VALUES ('$email', '$email', '$date')";
   
               if ($conn->query($sql) === TRUE) {
                 $successfullySubmitted = true;
@@ -194,8 +197,6 @@
             ?>>
             <h1>Subscribe to newsletter</h1>
             <p>Subscribe to our newsletter and get 10% discount on pineapple glasses.</p>
-            <iframe name="content" style="display: none">
-            </iframe>
             <form id="newsletter-form" method="POST">
               <div class="email-container">
                 <div class="error-message">
@@ -250,7 +251,7 @@
 </body>
 <script src="src/js/app.js"></script>
 <script type="text/javascript">
-  document.getElementById('js-enabled').style.display='flex';
+  document.getElementById('js-enabled').classList.remove("hidden");
 </script>
 </html>
 

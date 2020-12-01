@@ -46,20 +46,10 @@ new Vue({
       },
     },
     methods: {
-      async postData(url = '', data = {}) {
-        const response = await fetch(url, {
-          method: 'POST',
-          mode: 'no-cors',
-          cache: 'no-cache',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer',
-          body: JSON.stringify(data)
+      postData(url = '', data = {}) {
+        return axios.post(url, {
+          data
         });
-        return response.json();
       },
       submit() {
         if (this.isInvalidForm) return;
@@ -72,12 +62,14 @@ new Vue({
         const setSubmitSuccess = this.setSubmitSuccess;
 
         this.postData(HOST_URL + '/submit.php', data)
-          .then(res => {
-            setSubmitSuccess();
+          .then(() => {
             this.isSubmitButtonDisabled = false;
+            setSubmitSuccess();
+            console.log("* success");
           })
           .catch(() => {
             console.log('Server error! Try again later.');
+            alert("! server error")
             this.isSubmitButtonDisabled = false;
           })
       },

@@ -118,15 +118,16 @@
             $colombiaRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[Cc][Oo]))$/';
             $successfullySubmitted = false;
 
-            // Data to be sent
             $id = 1;
             $email = '';
             $date = date("Y/m/d h:i:s");
+            $emailPlatform = '';
             $terms = false;
 
             if ($response) { 
               parse_str($response, $parsedResponse);
               $email = $parsedResponse['email'];
+              $emailPlatform = substr(strstr($email, '@'), 1);
               if (strpos($response, 'terms')) {
                 $terms = $parsedResponse['terms'];
               }
@@ -153,19 +154,10 @@
             }
 
             if ($emailLength > 0 && $terms == true && !$haveErrors) {
-              $servername = "localhost";
-              $username = "root";
-              $password = "";
-              $dbname = "newsletter_db";
-  
-              $conn = new mysqli($servername, $username, $password, $dbname);
-            
-              if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
-  
+              include("config.php");
+
               $sql = "INSERT INTO `applications` (`email`, `email_platform`, `create_date`)
-              VALUES ('$email', '$email', '$date')";
+              VALUES ('$email', '$emailPlatform', '$date')";
   
               if ($conn->query($sql) === TRUE) {
                 $successfullySubmitted = true;
@@ -254,5 +246,3 @@
   document.getElementById('js-enabled').classList.remove("hidden");
 </script>
 </html>
-
-

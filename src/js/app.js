@@ -48,21 +48,22 @@ new Vue({
     methods: {
       postData(url = '', data = {}) {
         return axios.post(url, {
-          data
+          body: JSON.stringify(data),
         });
       },
       submit() {
         if (this.isInvalidForm) return;
 
         let data = {
-          email: this.email,
-          terms: this.terms
+          email: this.email
         }
         this.isSubmitButtonDisabled = true;
         const setSubmitSuccess = this.setSubmitSuccess;
 
         this.postData(HOST_URL + '/submit.php', data)
-          .then(() => {
+          .then((res) => {
+
+            console.log(res);
             this.isSubmitButtonDisabled = false;
             setSubmitSuccess();
             console.log("* success");

@@ -1,32 +1,22 @@
 <?php
-error_reporting(0);
-header('Content-Type: application/json');
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "newsletter_db";
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
+  header('Content-Type: application/json');
 
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  include("config.php");
 
   // Data
   $json = file_get_contents('php://input');
-  $params = json_decode($json);
-
-  $email_platform = $params->data->email;
+  $data = json_decode($json);
+  $emailValue = $data->email;
+  $emailPlatform = strstr($emailValue, "@");
   $date = date("Y/m/d h:i:s");
 
-  if ($email = '') {
+  if ($emailValue = '') {
     $res = [ 'error' => '* Email address is required' ];
     echo json_encode($res);
   }
 
   $sql = "INSERT INTO `applications` (`email`, `email_platform`, `create_date`)
-    VALUES ('$email_platform', '$email_platform', '$date')";
+    VALUES ('$emailValue', '$emailPlatform', '$date')";
 
   if ($conn->query($sql) === TRUE) {
     $res = [ 'status' => 'ok' ];

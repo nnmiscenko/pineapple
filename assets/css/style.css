@@ -348,6 +348,46 @@ noscript {
 
 table {
   border-collapse: collapse;
-  margin: 0 auto; }
+  margin: 40px auto; }
   table td {
-    border: 1px solid black; }
+    border: 1px solid black;
+    padding: 2px; }
+  table th a {
+    color: blue; }
+
+.filter-container {
+  display: flex;
+  border: 1px solid black;
+  flex-wrap: wrap;
+  width: 400px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding: 4px; }
+  .filter-container .search-controls {
+    width: 100%;
+    text-align: center;
+    margin: 20px auto; }
+  .filter-container p {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    font-weight: bold;
+    justify-content: center; }
+  .filter-container .filter-button {
+    display: block;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 2px 4px;
+    margin: 10px 20px; }
+
+.pagination {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto; }
+  .pagination a {
+    margin: 0 3px;
+    color: blue; }
+    .pagination a:hover {
+      text-decoration: underline; }

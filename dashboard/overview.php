@@ -111,6 +111,12 @@
 
     $result = $conn->query($sql);
 
+    while ($row = $result->fetch_assoc()) {
+      if (!in_array($row["email_platform"], $filterByMailArr)) {
+        array_push($filterByMailArr, $row["email_platform"]);
+      }
+    }
+
     echo "<div class='pagination'>";
     for ($i = 0; $i < ($result->num_rows / $itemsPerPage); $i++) {
       $pageNum = $i + 1;
@@ -150,10 +156,6 @@
             <td><a href='delete.php?ID=". $row["ID"] . "'>Delete</a></td>
           </tr>
         ";
-
-        if (!in_array($row["email_platform"], $filterByMailArr)) {
-          array_push($filterByMailArr, $row["email_platform"]);
-        }
       }
       echo "</table>";
     } else {

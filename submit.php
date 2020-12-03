@@ -6,18 +6,18 @@
   // Data
   $json = file_get_contents('php://input');
   $data = json_decode($json);
-  $emailValue = $data->email;
+  $emailValue = strval($data->data);
   $emailPlatform = strstr($emailValue, "@");
   $date = date("Y/m/d h:i:s");
 
-  if ($emailValue = '') {
-    $res = [ 'error' => '* Email address is required' ];
-    echo json_encode($res);
+  if (strlen($emailValue) == 0) {
+    return;
   }
 
   $sql = "INSERT INTO `applications` (`email`, `email_platform`, `create_date`)
-    VALUES ('$emailValue', '$emailPlatform', '$date')";
+  VALUES ('$emailValue', '$emailPlatform', '$date')";
 
+  echo $sql;
   if ($conn->query($sql) === TRUE) {
     $res = [ 'status' => 'ok' ];
     echo json_encode($res);

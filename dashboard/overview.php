@@ -129,7 +129,6 @@
       $sql .= " LIMIT ".$from.", ".$itemsPerPage;
       $result = $conn->query($sql);
     }
-    echo $sql;
     if ($result && $result->num_rows > 0) {
       echo "
         <table class='dashboard-table'>

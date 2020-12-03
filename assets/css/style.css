@@ -391,3 +391,20 @@ table {
     color: blue; }
     .pagination a:hover {
       text-decoration: underline; }
+
+.no-info {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  font-weight: bold;
+  justify-content: center; }
+
+.sort-icon {
+  margin: 4px;
+  background: #e7e6e6;
+  color: black;
+  padding: 0 4px;
+  border: 1px solid black;
+  border-radius: 5px; }
+  .sort-icon:hover {
+    background: silver; }

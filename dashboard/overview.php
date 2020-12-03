@@ -39,11 +39,48 @@
 
     if (isset($_GET["page"])) {
       $page = $_GET["page"];
+    } else {
+      $page = 1;
     }
 
     $sql = "SELECT * FROM `applications` ORDER BY `create_date` ASC";
 
-    if (strlen($sortByName) > 0 || strlen($sortByDate) > 0) {
+    if (strlen($filterByMail) > 0) {
+      $sql = "SELECT * FROM `applications` WHERE email_platform LIKE '".$filterByMail."' ORDER BY `create_date` ASC";
+    }
+
+    if (strlen($searchText) > 0) {
+      $sql = "SELECT * FROM `applications` WHERE email LIKE '%".$searchText."%' ORDER BY `create_date` ASC";
+      echo 'here';
+      if (strlen($filterByMail) > 0) {
+        $sql = "SELECT * FROM `applications` WHERE email LIKE '%".$searchText."%' AND WHERE email_platform LIKE '".$filterByMail."' ORDER BY `create_date` ASC";
+      }
+    }
+
+    if (strlen($sortByName) > 0 && strlen($sortByDate) > 0) {
+      if ($sortByName == "ASC") {
+        $sortParameters .= "`email` ASC, ";
+      } else if ($sortByName == "DESC") {
+        $sortParameters .= "`email` DESC, ";
+      }
+      
+      if ($sortByDate == "ASC") {
+        $sortParameters .= "`create_date` ASC ";
+      } else if ($sortByDate == "DESC") {
+        $sortParameters .= "`create_date` DESC ";
+      }
+      $sql = "SELECT * FROM `applications` ORDER BY ".$sortParameters;
+
+      if (strlen($filterByMail) > 0) {
+        $sql = "SELECT * FROM `applications` WHERE email_platform LIKE '".$filterByMail."' ORDER BY ".$sortParameters;
+      }
+      if (strlen($searchText) > 0) {
+        $sql = "SELECT * FROM `applications` WHERE email LIKE '%".$searchText."%' ORDER BY ".$sortParameters;
+        if (strlen($filterByMail) > 0) {
+          $sql = "SELECT * FROM `applications` WHERE email LIKE '%".$searchText."%' AND WHERE email_platform LIKE '".$filterByMail."' ORDER BY ".$sortParameters;
+        }
+      }
+    } else  if (strlen($sortByName) > 0 || strlen($sortByDate) > 0) {
       if ($sortByName == "ASC") {
         $sortParameters .= "`email` ASC ";
       } else if ($sortByName == "DESC") {
@@ -55,33 +92,33 @@
       } else if ($sortByDate == "DESC") {
         $sortParameters .= "`create_date` DESC ";
       }
-
       $sql = "SELECT * FROM `applications` ORDER BY ".$sortParameters;
-    }
-    
-    if (strlen($filterByMail) > 0) {
-      $sql = "SELECT * FROM applications WHERE email_platform LIKE '".$filterByMail."'";
+
+      if (strlen($filterByMail) > 0) {
+        $sql = "SELECT * FROM `applications` WHERE email_platform LIKE '".$filterByMail."' ORDER BY ".$sortParameters;
+      }
+
+      if (strlen($searchText) > 0) {
+        $sql = "SELECT * FROM `applications` WHERE email LIKE '%".$searchText."%' ORDER BY ".$sortParameters;
+        if (strlen($filterByMail) > 0) {
+          $sql = "SELECT * FROM `applications` WHERE email LIKE '%".$searchText."%' AND WHERE email_platform LIKE '".$filterByMail."' ORDER BY ".$sortParameters;
+        }
+      }
     }
 
-    if (strlen($searchText) > 0) {
-      $sql = "SELECT * FROM applications WHERE email LIKE '%".$searchText."%'";
-    }
+    $sortByNameParameter = $sortByName;
+    $sortByDateParameter = $sortByDate;
 
     $result = $conn->query($sql);
-
-    $sortByNameParameter = $sortByName == "ASC" ? "DESC" : "ASC";
-    $sortByDateParameter = $sortByDate == "ASC" ? "DESC" : "ASC";
-    $sortByDateUrl = "?sortByDate=" . $sortByDateParameter;
-    $sortByNameUrl = "?sortByName=" . $sortByNameParameter;
 
     echo "<div class='pagination'>";
     for ($i = 0; $i < ($result->num_rows / $itemsPerPage); $i++) {
       $pageNum = $i + 1;
-      echo "<a href='?page=$pageNum'>".$pageNum."</a>";
+      echo "<a href='?search=".$searchText."&sortByDate=".$sortByDateParameter."&sortByName=".$sortByNameParameter."&filterByMail=".$filterByMail."&page=$pageNum'>".$pageNum."</a>";
     }
     echo "</div>";
 
-    if (strlen($page) > 0) {
+    if ($page > 0) {
       $from = $page * $itemsPerPage - $itemsPerPage;
       $to = $page * $itemsPerPage;
 
@@ -89,23 +126,25 @@
         $to = $result->num_rows;
       }
 
-      $sql = "SELECT * FROM `applications` ORDER BY `create_date` ASC LIMIT ".$from.", ".$itemsPerPage;
+      $sql .= " LIMIT ".$from.", ".$itemsPerPage;
       $result = $conn->query($sql);
     }
-
+    echo $sql;
     if ($result && $result->num_rows > 0) {
       echo "
         <table class='dashboard-table'>
-          <tr>
+          <tr class='exportable'>
+            <th></th>
             <th>ID</th>
-            <th><a href='" . $sortByNameUrl . "'>Email</th>
-            <th><a href='" . $sortByDateUrl . "'>Submit date</th>
+            <th>Email<a class='sort-icon' href='?search=".$searchText."&sortByDate=".$sortByDateParameter."&sortByName=DESC"."&filterByMail=".$filterByMail."&page=1'>&#8593;</a><a class='sort-icon' href='?search=".$searchText."&sortByDate=".$sortByDateParameter."&sortByName=ASC"."&filterByMail=".$filterByMail."&page=1'>&#8595;</a></th>
+            <th>Submit date<a class='sort-icon' href='?search=".$searchText."&sortByDate=DESC&sortByName=".$sortByNameParameter."&filterByMail=".$filterByMail."&page=1'>&#8593;</a><a class='sort-icon' href='?search=".$searchText."&sortByDate=ASC&sortByName=".$sortByNameParameter."&filterByMail=".$filterByMail."&page=1'>&#8595;</a></th>
             <th>Controls</th>
           </tr>
       ";
       while ($row = $result->fetch_assoc()) {
         echo "
           <tr>
+            <td><input type='checkbox' class='ex' /></td>
             <td class='info-cell'>" . $row["ID"] ."</td>" .
             "<td class='info-cell'>" . $row["email"] . "</td>" .
             "<td class='info-cell'>" . $row["create_date"] . "</td>
@@ -120,8 +159,8 @@
       echo "</table>";
     } else {
       echo '
-        <div style = "display: flex; width: 100%; margin: 0 auto; font-weight: bold; justify-content: center; ">
-          No entries have been added yet.
+        <div class="no-info">
+          No entries.
         </div>
       ';
     }
@@ -135,7 +174,8 @@
 
   <div class="filter-container">
     <p>Filter and search controls</p>
-    <a class='filter-button' href='?'>Reset</a>
+    <a class='filter-button' href='?'>Reset</a> <br/>
+    <button onclick="exportTableToCSV('applications.csv')">Export to CSV</button>
     <div class="search-controls">
       <form action="?" id="search">
         <input type="text" placeholder="Search" id="search" name="search" />
@@ -144,9 +184,10 @@
     </div>
     <?php
       for ($i = 0; $i < count($filterByMailArr); $i++) {
-        echo "<a class='filter-button' href='?filterByMail=". $filterByMailArr[$i] ."'>". $filterByMailArr[$i] . "</a>";
+        echo "<a class='filter-button' href='?search=".$searchText."&sortByDate=".$sortByDateParameter."&sortByName=".$sortByNameParameter."&filterByMail=". $filterByMailArr[$i] ."&page=1'>". $filterByMailArr[$i] . "</a>";
       }
     ?>
   </div>
-</body>
+  <script src="export-csv.js"></script>
+  </body>
 </html>

@@ -44,12 +44,12 @@ a {
 
     &__main {
       @media (min-width: $bp-sm) {
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
       }
     }
 
     &__secondary {
-      margin-top: 6px;
+      margin-top: 0.375rem;
       margin-left: 0.9375rem;
       @media (max-width: $bp-sm) {
           display: none;
@@ -75,7 +75,7 @@ a {
         color: #6A707B;
         @media (max-width: $bp-sm) {
           font-size: 14px;
-          line-height: 24px;
+          line-height: 0.625rem;
         }
       }
     }
@@ -111,11 +111,11 @@ a {
     font-size: 2rem;
     line-height: 2.125rem;
     color: #131821;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 
     @media (max-width: $bp-sm) {
       font-size: 24px;
-      line-height: 34px;
+      line-height: 2.125rem;
     }
   }
   
@@ -128,9 +128,9 @@ a {
     color: #6A707B;
     @media (max-width: $bp-sm) {
       font-size: 14px;
-      line-height: 26px;
+      line-height: 1.625rem;
     }
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 
   input[type=email] {
@@ -140,7 +140,7 @@ a {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5rem;
     color: #6A707B;
     border:none;
   }
@@ -175,7 +175,7 @@ a {
   }
 
   .email-container {
-    margin: 50px 0 53px 0;
+    margin: 3.125rem 0 3.3125rem 0;
     border-left: 0;
     input[type=email]:focus {
       box-shadow: 0px 30px 40px rgba(19, 24, 33, 0.06);
@@ -197,7 +197,7 @@ a {
     }
 
     @media (max-width: $bp-sm) {
-      margin: 20px 0;
+      margin: 1.25rem 0;
     }
 
     @media (min-width: $bp-sm) {
@@ -227,15 +227,15 @@ a {
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       width: 1%;
-      padding-left: 40px;
+      padding-left: 2.5rem;
       margin-bottom: 0;
       border-top: 1px solid #E3E3E4;
       border-bottom: 1px solid #E3E3E4;
       font-size: 16px;
-      line-height: 24px;
+      line-height: 1.5rem;
       outline: none;
       @media (max-width: $bp-sm) {
-        padding-left: 15px;
+        padding-left: 0.9375rem;
         padding-right: 0;
       }
     }
@@ -249,7 +249,7 @@ a {
       display: flex;
       font-family: Arial, Helvetica, sans-serif;
       @media (max-width: $bp-sm) {
-        padding: 0 15px;
+        padding: 0 0.9375rem;
       }
     }
 
@@ -270,9 +270,9 @@ a {
 
   .checkbox-container {
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
     @media (max-width: $bp-sm) {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
     span {
@@ -281,7 +281,7 @@ a {
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
-      line-height: 28px;
+      line-height: 1.75rem;
       color: #6A707B;
       .terms-link {
         color: #131821;
@@ -302,13 +302,13 @@ a {
   justify-content: center;
   margin-top: 3.125rem;
   @media (max-width: $bp-sm) {
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
   .icon {
     display: inline-block;
     width: 46px;
     height: 46px;
-    line-height: 46px;
+    line-height: 2.875rem;
     text-align: center;
     border: 2px solid #E3E3E4;
     border-radius: 100%;
@@ -400,7 +400,7 @@ a {
     padding-top: 0;
     margin: 0;
     width: 680px;
-    padding: 78px;
+    padding: 4.875rem;
     display: flex;
     flex-direction: column;
   }
@@ -431,23 +431,23 @@ a {
 
 .success-message {
   #win-icon {
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
   }
 
   h1 {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 
   p {
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
   }
 
   @media (max-width: $bp-sm) {
     h1 {
-      margin-bottom: 10px;
+      margin-bottom: 0.625rem;
     }
     p {
-      margin-bottom: 40px;
+      margin-bottom: 2.5rem;
     }
   }
 }
@@ -457,7 +457,7 @@ a {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 1.125rem;
   color: #6A707B;
 }
 
@@ -471,10 +471,10 @@ noscript {
 
 table {
   border-collapse: collapse;
-  margin: 40px auto;
+  margin: 2.5rem auto;
   td {
     border: 1px solid black;
-    padding: 2px;
+    padding: 0.125rem;
   }
 
   th {
@@ -492,12 +492,12 @@ table {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  padding: 4px;
+  padding: 0.25rem;
 
   .search-controls {
     width: 100%;
     text-align: center;
-    margin: 20px auto;
+    margin: 1.25rem auto;
   }
 
   p {
@@ -509,8 +509,8 @@ table {
     color: black;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 2px 4px;
-    margin: 10px 20px;
+    padding: 0.125rem 0.25rem;
+    margin: 0.625rem 1.25rem;
   }
 }
 
@@ -520,7 +520,7 @@ table {
   margin: 0 auto;
 
   a {
-    margin: 0 3px;
+    margin: 0 0.1875rem;
 
     color: blue;
 
@@ -539,10 +539,10 @@ table {
 }
 
 .sort-icon {
-  margin: 4px;
+  margin: 0.25rem;
   background: rgb(231, 230, 230);
   color: black;
-  padding: 0 4px;
+  padding: 0 0.25rem;
   border: 1px solid black;
   border-radius: 5px;
 

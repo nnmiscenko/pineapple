@@ -31,9 +31,9 @@ a {
     align-items: center; }
   @media (min-width: 767px) {
     #navbar .logo__main {
-      margin-bottom: 16px; } }
+      margin-bottom: 1rem; } }
   #navbar .logo__secondary {
-    margin-top: 6px;
+    margin-top: 0.375rem;
     margin-left: 0.9375rem; }
     @media (max-width: 767px) {
       #navbar .logo__secondary {
@@ -52,7 +52,7 @@ a {
       @media (max-width: 767px) {
         #navbar ul li a {
           font-size: 14px;
-          line-height: 24px; } }
+          line-height: 0.625rem; } }
 
 .content-block {
   margin: 0 1.25rem;
@@ -80,11 +80,11 @@ a {
   font-size: 2rem;
   line-height: 2.125rem;
   color: #131821;
-  margin-bottom: 10px; }
+  margin-bottom: 0.625rem; }
   @media (max-width: 767px) {
     .newsletter h1 {
       font-size: 24px;
-      line-height: 34px; } }
+      line-height: 2.125rem; } }
 
 .newsletter p {
   font-family: Arial;
@@ -93,11 +93,11 @@ a {
   font-size: 1rem;
   line-height: 1.625rem;
   color: #6A707B;
-  margin-bottom: 20px; }
+  margin-bottom: 1.25rem; }
   @media (max-width: 767px) {
     .newsletter p {
       font-size: 14px;
-      line-height: 26px; } }
+      line-height: 1.625rem; } }
 
 .newsletter input[type=email] {
   width: 100%;
@@ -106,7 +106,7 @@ a {
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5rem;
   color: #6A707B;
   border: none; }
 
@@ -137,7 +137,7 @@ a {
     position: relative; }
 
 .newsletter .email-container {
-  margin: 50px 0 53px 0;
+  margin: 3.125rem 0 3.3125rem 0;
   border-left: 0; }
   .newsletter .email-container input[type=email]:focus {
     box-shadow: 0px 30px 40px rgba(19, 24, 33, 0.06); }
@@ -152,7 +152,7 @@ a {
         opacity: 1; }
   @media (max-width: 767px) {
     .newsletter .email-container {
-      margin: 20px 0; } }
+      margin: 1.25rem 0; } }
   @media (min-width: 767px) {
     .newsletter .email-container {
       width: 663px;
@@ -175,16 +175,16 @@ a {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     width: 1%;
-    padding-left: 40px;
+    padding-left: 2.5rem;
     margin-bottom: 0;
     border-top: 1px solid #E3E3E4;
     border-bottom: 1px solid #E3E3E4;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5rem;
     outline: none; }
     @media (max-width: 767px) {
       .newsletter .email-container input[type=email] {
-        padding-left: 15px;
+        padding-left: 0.9375rem;
         padding-right: 0; } }
   .newsletter .email-container .button-container {
     background: #fff;
@@ -196,7 +196,7 @@ a {
     font-family: Arial, Helvetica, sans-serif; }
     @media (max-width: 767px) {
       .newsletter .email-container .button-container {
-        padding: 0 15px; } }
+        padding: 0 0.9375rem; } }
   .newsletter .email-container #submit {
     border: 0;
     background: #fff;
@@ -208,17 +208,17 @@ a {
 
 .newsletter .checkbox-container {
   display: flex;
-  margin-bottom: 50px; }
+  margin-bottom: 3.125rem; }
   @media (max-width: 767px) {
     .newsletter .checkbox-container {
-      margin-bottom: 20px; } }
+      margin-bottom: 1.25rem; } }
   .newsletter .checkbox-container span {
     margin-left: 0.9375rem;
     font-family: Arial;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 28px;
+    line-height: 1.75rem;
     color: #6A707B; }
     .newsletter .checkbox-container span .terms-link {
       color: #131821;
@@ -234,12 +234,12 @@ a {
   margin-top: 3.125rem; }
   @media (max-width: 767px) {
     .social-icons {
-      margin-top: 20px; } }
+      margin-top: 1.25rem; } }
   .social-icons .icon {
     display: inline-block;
     width: 46px;
     height: 46px;
-    line-height: 46px;
+    line-height: 2.875rem;
     text-align: center;
     border: 2px solid #E3E3E4;
     border-radius: 100%; }
@@ -296,7 +296,7 @@ a {
     padding-top: 0;
     margin: 0;
     width: 680px;
-    padding: 78px;
+    padding: 4.875rem;
     display: flex;
     flex-direction: column; }
   .newsletter {
@@ -318,26 +318,26 @@ a {
       display: none; } }
 
 .success-message #win-icon {
-  margin-bottom: 30px; }
+  margin-bottom: 1.875rem; }
 
 .success-message h1 {
-  margin-bottom: 20px; }
+  margin-bottom: 1.25rem; }
 
 .success-message p {
-  margin-bottom: 50px; }
+  margin-bottom: 3.125rem; }
 
 @media (max-width: 767px) {
   .success-message h1 {
-    margin-bottom: 10px; }
+    margin-bottom: 0.625rem; }
   .success-message p {
-    margin-bottom: 40px; } }
+    margin-bottom: 2.5rem; } }
 
 .error-message {
   font-family: Arial;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 1.125rem;
   color: #6A707B; }
 
 .hidden {
@@ -348,10 +348,10 @@ noscript {
 
 table {
   border-collapse: collapse;
-  margin: 40px auto; }
+  margin: 2.5rem auto; }
   table td {
     border: 1px solid black;
-    padding: 2px; }
+    padding: 0.125rem; }
   table th a {
     color: blue; }
 
@@ -363,11 +363,11 @@ table {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  padding: 4px; }
+  padding: 0.25rem; }
   .filter-container .search-controls {
     width: 100%;
     text-align: center;
-    margin: 20px auto; }
+    margin: 1.25rem auto; }
   .filter-container p {
     display: flex;
     width: 100%;
@@ -379,15 +379,15 @@ table {
     color: black;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 2px 4px;
-    margin: 10px 20px; }
+    padding: 0.125rem 0.25rem;
+    margin: 0.625rem 1.25rem; }
 
 .pagination {
   text-align: center;
   width: 50%;
   margin: 0 auto; }
   .pagination a {
-    margin: 0 3px;
+    margin: 0 0.1875rem;
     color: blue; }
     .pagination a:hover {
       text-decoration: underline; }
@@ -400,10 +400,10 @@ table {
   justify-content: center; }
 
 .sort-icon {
-  margin: 4px;
+  margin: 0.25rem;
   background: #e7e6e6;
   color: black;
-  padding: 0 4px;
+  padding: 0 0.25rem;
   border: 1px solid black;
   border-radius: 5px; }
   .sort-icon:hover {

@@ -10,7 +10,7 @@ if(isset($_GET["ID"]) && !empty($_GET["ID"])){
       header("location: overview.php");
       exit();
     } else{
-      echo "Oops! Something went wrong. Please try again later.";
+      echo "Server error! Please try again later.";
     }
   }
   mysqli_stmt_close($stmt);
